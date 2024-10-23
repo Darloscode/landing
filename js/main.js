@@ -29,6 +29,18 @@ let loaded = ( eventLoaded ) => {
 
         if (emailText.length === 0) {
           emailElement.focus()
+            emailElement.animate(
+            [
+                { transform: "translateX(0)" },
+                { transform: "translateX(50px)" },
+                { transform: "translateX(-50px)" },
+                { transform: "translateX(0)" }
+            ],
+            {
+                duration: 400,
+                easing: "linear",
+            }
+        )
         }
     })
 
