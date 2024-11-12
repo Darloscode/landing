@@ -18,6 +18,7 @@
   grid-template-columns: repeat(27, 1fr);
   position: relative;
 }
+
 .btn{
   border-radius: 8px;
 }
@@ -90,6 +91,16 @@
   -ms-grid-row-span: 27;
   grid-row: 6 / span 27;
   padding-top: 20px;
+}
+
+blockquote p{
+  padding-top: 20px;
+}
+
+.logo-image {
+  height: 100px;
+  width: auto;
+  opacity: 0.5;
 }
 
 /*
