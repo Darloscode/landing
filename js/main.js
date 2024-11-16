@@ -17,7 +17,6 @@ landing-16dc-default-rtdb.firebaseio.com/collection.json
 
 const databaseURL = 'https://landing-dc16c-default-rtdb.firebaseio.com/data.json';
 let sendData = () => {
-
     // Obtén los datos del formulario
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries()); // Convierte FormData a objeto
@@ -45,14 +44,11 @@ let sendData = () => {
         .catch(error => {
             alert('Hemos experimentado un error. ¡Vuelve pronto!'); // Maneja el error con un mensaje
         });
-
-
 }
 
 let getData = async () => {
 
     try {
-
         // Realiza la petición fetch a la URL de la base de datos
         const response = await fetch(databaseURL, {
             method: 'GET'
@@ -72,29 +68,43 @@ let getData = async () => {
             if (Object.keys(data).length > 0) {
                 for (let key in data) {
 
-                    let { email, saved } = data[key]
+                    let { apellido, cedula, celular, correo, nombre, opcion, saved } = data[key]
 
-                    let date = saved.split(",")[0]
+                    /*let date = saved.split(", ")[0]*/
 
-                    let count = countSuscribers.get(date) || 0;
-                    countSuscribers.set(date, count + 1)
+                    let count = countSuscribers.get(opcion) || 0;
+                    countSuscribers.set(opcion, count + 1)
                 }
             }
+
+            let contador = 0
+
             if (countSuscribers.size > 0) {
 
                 subscribers.innerHTML = ''
-       
+                total_cotizaciones.innerHTML = ''
+
                 let index = 1;
                 for (let [date, count] of countSuscribers) {
                     let rowTemplate = `
                         <tr>
-                            <th>${index}</th>
+                            <th class="table-primary">${index}</th>
                             <td>${date}</td>
                             <td>${count}</td>
                         </tr>`
                     subscribers.innerHTML += rowTemplate
                     index++;
+                    contador += count
                 }
+
+                let template = `
+                <tr>
+                    <td colspan="2"><strong>Total de cotizaciones</strong></td>
+                    <td><strong>${contador}</strong></td>
+                </tr>`
+
+                total_cotizaciones.innerHTML += template
+
             }
 
         }
@@ -118,12 +128,26 @@ let loaded = (eventLoaded) => {
     myform.addEventListener('submit', (eventSubmit) => {
         eventSubmit.preventDefault();
 
-        const emailElement = document.querySelector('.form-control-lg');
-        const emailText = emailElement.value;
+        const nombreElement = document.querySelector('#form_nombre');
+        const apellidoElement = document.querySelector('#form_apellido');
+        const correoElement = document.querySelector('#form_correo');
+        const cedulaElement = document.querySelector('#form_cedula');
+        const celularElement = document.querySelector('#form_celular');
+        const opcionElement = document.querySelector('#opcion');
 
-        if (emailText.length === 0) {
-            emailElement.focus()
-            emailElement.animate(
+        const nombreText = nombreElement.value;
+        const apellidoText = apellidoElement.value;
+        const correoText = correoElement.value;
+        const cedulaText = cedulaElement.value;
+        const celularText = celularElement.value;
+        const opcionText = opcionElement.value;
+
+        const regex = /^[a-zA-Z]+$/;
+        const regex_numeros = /^\d+$/;
+
+        if (nombreText.length === 0) {
+            nombreElement.focus()
+            nombreElement.animate(
                 [
                     { transform: "translateX(0)" },
                     { transform: "translateX(50px)" },
@@ -137,6 +161,132 @@ let loaded = (eventLoaded) => {
             )
             return;
         }
+
+        if (nombreText.length > 21) {
+            alert('Escribe un nombre de hasta 20 caracteres')
+            return;
+        }
+
+        if (!regex.test(nombreText)) {
+            alert('Escribe solo letras en el nombre')
+            return;
+        }
+
+        if (apellidoText.length === 0) {
+            apellidoElement.focus()
+            apellidoElement.animate(
+                [
+                    { transform: "translateX(0)" },
+                    { transform: "translateX(50px)" },
+                    { transform: "translateX(-50px)" },
+                    { transform: "translateX(0)" }
+                ],
+                {
+                    duration: 400,
+                    easing: "linear",
+                }
+            )
+            return;
+        }
+
+        if (apellidoText.length > 51) {
+            alert('Escribe un nombre de hasta 50 caracteres')
+            return;
+        }
+
+        if (!regex.test(apellidoText)) {
+            alert('Escribe solo letras en el apellido')
+            return;
+        }
+
+        if (correoText.length === 0) {
+            correoElement.focus()
+            correoElement.animate(
+                [
+                    { transform: "translateX(0)" },
+                    { transform: "translateX(50px)" },
+                    { transform: "translateX(-50px)" },
+                    { transform: "translateX(0)" }
+                ],
+                {
+                    duration: 400,
+                    easing: "linear",
+                }
+            )
+            return;
+        }
+
+        if (cedulaText.length === 0) {
+            cedulaElement.focus()
+            cedulaElement.animate(
+                [
+                    { transform: "translateX(0)" },
+                    { transform: "translateX(50px)" },
+                    { transform: "translateX(-50px)" },
+                    { transform: "translateX(0)" }
+                ],
+                {
+                    duration: 400,
+                    easing: "linear",
+                }
+            )
+            return;
+        }
+
+        if (cedulaText.length != 10) {
+            alert('Escribe una cédula de 10 dígitos')
+            return;
+        }
+
+        if (!regex_numeros.test(cedulaText)) {
+            alert('Escribe solo números en la cédula')
+            return;
+        }
+
+        if (celularText.length === 0) {
+            celularElement.focus()
+            celularElement.animate(
+                [
+                    { transform: "translateX(0)" },
+                    { transform: "translateX(50px)" },
+                    { transform: "translateX(-50px)" },
+                    { transform: "translateX(0)" }
+                ],
+                {
+                    duration: 400,
+                    easing: "linear",
+                }
+            )
+            return;
+        }
+
+        if (celularText.length != 10) {
+            alert('Escribe un celular de 10 dígitos')
+            return;
+        }
+
+        if (!regex_numeros.test(celularText)) {
+            alert('Escribe solo números en el celular')
+            return;
+        }
+
+        if (opcionText.length === 0 || opcionText === "ninguna") {
+            opcionElement.focus()
+            opcionElement.animate(
+                [
+                    { transform: "translateX(0)" },
+                    { transform: "translateX(50px)" },
+                    { transform: "translateX(-50px)" },
+                    { transform: "translateX(0)" }
+                ],
+                {
+                    duration: 400,
+                    easing: "linear",
+                }
+            )
+            return;
+        }
+
         sendData();
     })
 
