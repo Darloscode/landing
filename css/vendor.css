@@ -121,22 +121,30 @@ blockquote p {
 
 /*** ESTILOS BOTÓN SLIDE LEFT ***/
 .ov-btn-slide-left {
-  background: #fff; /* color de fondo */
-  color: #4741d7; /* color de fuente */
-  border: 2px solid #4741d7; /* tamaño y color de borde */
+  background: #fff;
+  /* color de fondo */
+  color: #4741d7;
+  /* color de fuente */
+  border: 2px solid #4741d7;
+  /* tamaño y color de borde */
   padding: 16px 20px;
-  border-radius: 3px; /* redondear bordes */
+  border-radius: 3px;
+  /* redondear bordes */
   position: relative;
   z-index: 1;
   overflow: hidden;
   display: inline-block;
 }
+
 .ov-btn-slide-left:hover {
-  color: #fff; /* color de fuente hover */
+  color: #fff;
+  /* color de fuente hover */
 }
+
 .ov-btn-slide-left::after {
   content: "";
-  background: #4741d7; /* color de fondo hover */
+  background: #4741d7;
+  /* color de fondo hover */
   position: absolute;
   z-index: -1;
   padding: 16px 20px;
@@ -148,6 +156,7 @@ blockquote p {
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
 }
+
 .ov-btn-slide-left:hover::after {
   left: 0;
   right: 0;
@@ -156,6 +165,89 @@ blockquote p {
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
 }
+
+#imagen_cotizar {
+  padding-top: 25%;
+}
+
+.navbar {
+  background-color: #cbd6d9;
+}
+
+#p_inicio {
+  color: white;
+}
+
+.descripcion_inicio {
+  color: black;
+}
+
+#titulo_principal {
+  color: white;
+}
+
+#logo_principal {
+  margin-left: 30%;
+  width: 100px;
+  height: auto;
+}
+
+#logo_final {
+  width: 170px;
+  height: auto;
+}
+
+#contenedor_logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+#catalogo {
+  background-color: #3F508A;
+}
+
+#contenedor_catalogo {
+  background-color: #005BBB;
+  color: red;
+}
+
+#contenedor_catalogo2>p {
+  color: white;
+}
+
+#footer {
+  background-color: #3F508A;
+  color: white;
+}
+
+.badge {
+  background-color: #005BBB;
+}
+
+#guardar_compra {
+  background-color: #1C274C;
+}
+
+#compra_span {
+  color: #005BBB;
+}
+
+.list-group-item {
+  color: black;
+}
+
+.btn {
+  background-color: #3F508A;
+  color: white;
+}
+
+.logo-image {
+  width: auto;
+  height: 170px;
+}
+
 /*
 - Jarallax
 - Chocolat
